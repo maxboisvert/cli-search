@@ -1,6 +1,20 @@
-# Search engine
+# Command line search
 
+This is an early version.
 
+cli-search is a lightweight and easy to use full text search engine. It is built with simplicity of use and implementation in mind.
+
+## Installation
+
+## Usage
+
+## Bootstrap
+
+### Indexation
+
+### Search
+
+## Benchmarks
 
 ## License
 

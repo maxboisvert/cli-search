@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+query = ARGV[0]
+index = `./file_config index`
+terms_dir = index + '/' + 'terms'
+terms = `echo "#{query}" | file_analyze`
+matches = {}
+terms_count = 0
+
+terms.each_line do |line|
+  terms_count += 1
+
+  term, count = line.split(' ')
+
+  File.open(terms_dir + '/' + term).each_line do |line|
+    key, count = line.split(' ')
+
+    matches[key] ||= {}
+    matches[key][term] = count
+
+  end rescue nil
+end
+
+scored_matches = {}
+
+matches.each do |match, matched_terms|
+  next if matched_terms.size != terms_count
+
+  # TODO score
+  scored_matches[match] = matched_terms.size
+end
+
+scored_matches.sort{ |a, b| b[1] <=> a[1] }.each do |match, score|
+  puts "#{match} #{score}"
+end

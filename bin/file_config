@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "json"
+
+key = ARGV[0]
+json = File.read('config.json')
+
+print JSON.parse(json)[key]

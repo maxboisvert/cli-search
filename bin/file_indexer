@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+index = `./file_config index`
+terms_dir = index + '/' + 'terms'
+
+path = ARGV[0]
+
+`cat #{path} | ./file_analyze`.each_line do |line|
+  term, count = line.split(' ')
+
+  File.open(terms_dir + '/' + term, "a") do |file|
+    file.puts("#{path} #{count}")
+  end
+end

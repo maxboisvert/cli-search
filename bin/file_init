@@ -1,0 +1,7 @@
+#!/bin/bash
+
+INDEX=$(./file_config index)
+
+mkdir -p $INDEX
+mkdir -p $INDEX/terms
+touch $INDEX/info

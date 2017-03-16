@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+HERE=`pwd`
+
+./file_indexer data/doc1.txt
+./file_indexer data/doc2.txt
+./file_indexer data/doc3.txt
+
+

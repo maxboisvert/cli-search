@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+output = Hash.new(0)
+
+ARGF.each_line do |line|
+  terms = line
+    .downcase
+    .strip
+    .split(/[^\p{Alnum}]+/)
+
+  terms.each do |term|
+    output[term] += 1
+  end
+end
+
+output.each do |term, count|
+  puts "#{term} #{count}"
+end

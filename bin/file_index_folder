@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#set -e
+
+FOLDER=$1
+
+find $FOLDER -type f | grep -E '.js$|.html$|.css$|.rb$' | while read file
+do
+    ./file_indexer $file
+done

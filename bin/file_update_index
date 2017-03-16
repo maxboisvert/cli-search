@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+index = `./file_config index`
+terms_dir = index + '/' + 'terms'
+index_info = index + '/' + 'info'
+
+output = Hash.new(0)
+
+`ls #{terms_dir}`.each_line.map { |line| line.strip }.each do |term|
+  total = 0
+
+  File.open(terms_dir + '/' + term).each_line do |line|
+    key, count = line.split(' ')
+
+    total += count.to_i
+  end
+
+  output[term] = total if total > 0
+end
+
+File.open(index_info, "w") do |file|
+  output.each do |term, count|
+    file.puts("#{term} #{count}")
+  end
+end
